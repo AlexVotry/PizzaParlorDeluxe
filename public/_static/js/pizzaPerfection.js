@@ -73,23 +73,12 @@ function order() {
 	else {
 		crust = "regular";
 	}
-	// write the pizza order in the <div=order> on PizzaParlor2.htm
+	// write the pizza order in the <div=order> on showHome.php
 	subTotal = cost.toFixed(2);	
 	document.getElementById("order").innerHTML = size + " " + chosen + " pizza on a " + crust + " crust:  $" + subTotal;	
 	totalWithTax = Number(subTotal) * 1.095;
-	showTotal();
-}
-	// price in the <div=total> on PizzaParlor2.htm
-function showTotal() {
 	document.getElementById("total").innerHTML = "Your total order with tax is: $" + totalWithTax.toFixed(2);	
 }
-
-	document.getElementById('twt').setAttribute = ('value', totalWithTax.toFixed(2));
-	// var picked = document.forms[0];
-	// var elem = picked.elements['twt'];
-	// elem.value = totalWithTax.toFixed(2);
-	// alert(picked.elements['twt'].value);
-
 
 	// install a set time of 1/2 hr after time of order.
 function startTime() {

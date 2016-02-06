@@ -1,25 +1,26 @@
 </head>
 <body>
+	<h1>Edit Administrator's information</h1>
 		<form method="post" action="<?php echo base_url();?>index.php/admin/update">
 		<?php
-		extract($admin);
+		extract($admin); // this comes from $data['admin'] from edit()
 		?>
-			<table width="400" border="0" cellpadding="5">
+			<table cellpadding="5">
 				<tr>
-					<th width="213" align="right" scope="row">Enter your username</th>
+					<th width="213" align="right" scope="row">Enter username</th>
 					<td width="161"><input type="text" name="username" size="20" value="<?php echo $username; ?>"  /></td>
 				</tr>
 				<tr>
-					<th align="right" scope="row">Enter your first name</th>
+					<th align="right" scope="row">Enter first name</th>
 					<td><input type="text" name="firstName" size="20" value="<?php echo $firstName; ?>" /></td>
 				</tr>
 				<tr>
-					<th align="right" scope="row">Enter your last name</th>
+					<th align="right" scope="row">Enter last name</th>
 					<td><input type="text" name="lastName" size="20" value="<?php echo $lastName; ?>" /></td>
 				</tr>
 				<tr>
-					<th align="right" scope="row">Enter your password</th>
-					<td><input type="text" name="password" value="<?php echo $password; ?>" ></td>
+					<th align="right" scope="row">Enter new password</th>
+					<td><input type="text" name="password" ></td>
 				</tr>
 				<tr>
 					<th align="right" scope="row">New Admin. level</th>

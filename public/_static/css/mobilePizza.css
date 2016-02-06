@@ -8,14 +8,14 @@ body {
     width: 74%;
 	margin-left: 15%;
 	background-color: #000;
-    background-image: url(../../images/Pepperoni_1.jpg);
+    /*background-image: url(../../images/Pepperoni_1.jpg);*/
     background-repeat: no-repeat;
 	font-size: 20px;
 }
 
 h1 {
-	margin-left: 25%;
-    /*margin-right: 35%;*/
+    font-size: 25px;
+	margin-left: 10%;
 	color: #cc3333;
     text-shadow: 2px 2px 2px #000;
 }
@@ -25,27 +25,35 @@ h4 {
 }
 #nav, #nav2 {
     padding-left: 15px;
-    margin-top: -83px;
-	float: right;
-	width: 25%;
-    height: 150px;
+    margin-top: -10px;
+	float: left;
+	width: 75%;
+    height: 50px;
 	background-color: #000;
 	color: #fff;
     font-size: 16px;
 }
+#adminLogin {
+    display: none;
+}
+#mobileLogin {
+    margin-top: -100px;
+}
 #total, #order {
+    margin-top: -15px;
     color: #7fff00;
     font-size: 12px;
-    padding-left: 5px;
+    /*padding-left: 5px;*/
 }
 #sDrop, #bDrop {
     padding: 5px;
     text-align: center;
     background-color: #660000;
     border: solid 1px #c3c3c3;
-	width: 36%;
+	width: 34%;
 	color: #fff;
 	float: left;
+    height: 180px;
 }
 #sDrop {
         margin-left: 15%;
@@ -60,19 +68,16 @@ h4 {
     font-size: 14px;
 	background-color: #628e23;
 	color: #fff;
-    padding: 65px;
+    padding: 5px;
     display: none;	
 	width: 25%;
 	position: fixed;
 	z-index: -3;
+    width: 68%;
+    margin-top: 180px;
+    margin-left: 15%;
 }
-#special {
-	margin-left: 15%;
-    margin-right: 3px;
-}
-#build {
-	margin-left: 51%;
-}
+
 #final {
 	background-color: #bb2355;
 	color: #fff;
@@ -89,40 +94,24 @@ h4 {
     color: #fff;
     font-size: 14px;
 }
-.cform {
+.mform {
     background-color: #628e23;
     border: 6px groove #2f4f4f;
     color: #fff;
     font-size: 14px;
     width: 72%;
 }
-.mform {
+.cform {
     display: none;
 }
+
 table {
 	background-color: #628e23;
 	color: #fff;
 	font-size: 14px;
 	width: 100%;
-    border: 6px groove #2f4f4f;
-    border-collapse: collapse;
 }
-th, td {
-    border: 2px solid #2f4f4f;
-    border-collapse: collapse;
-}
-.ten {
-    margin-right: 10%;
-}
-.thirty {
-   margin-right: 30%;
-}
-.six {
-    margin-right: 6%;
-}
-.five {
-    margin-right: 5%;
-}
+
 #adminTable {
     margin-top: 2%;
     width: 80%;
@@ -154,12 +143,7 @@ fieldset {
 #homeLogin {
     margin-left: 15%;
 }
-#adminLogin {
-    margin-left: 15px;
-}
-#mobileLogin {
-    display: none;
-}
+
 button {
   font: bold 11px Arial;
   text-decoration: none;

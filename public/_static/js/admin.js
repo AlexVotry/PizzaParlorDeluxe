@@ -5,7 +5,8 @@ author:    mbaker
 date:      1-2-2015
 paramters: formNum as an integer, representing the index of the form in the form array
 ---------------------------------------------*/
-function chkForm(formNum) {
+
+function chkForm(formName) {
     // capture the number of elements in the form
     var intElements = document.forms[formNum].elements.length;
     
@@ -23,7 +24,7 @@ function chkForm(formNum) {
         
         // password must include numbers, upper case letters, lower case letters, and a special character
         // check password requirements
-        if (document.forms[formNum].elements[i].name == "pswWord"){
+        if (document.forms[formNum].elements[i].name == "password"){
             // capture the value typed into the password input field
             var strPass = document.forms[formNum].elements[i].value;
             

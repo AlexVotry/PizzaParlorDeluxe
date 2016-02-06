@@ -21,7 +21,7 @@
 		<th>username</th>
 		<th>First Name</th>
 		<th>Last Name</th>
-		<th>password</th>
+		<!-- <th>password</th> -->
 		<th>Admin Level</th>
 		<th colspan="2">Action</th>
 	</tr>
@@ -31,14 +31,16 @@
 		<td><?php echo $adKey->username; ?></td>
 		<td><?php echo $adKey->firstName; ?></td>
 		<td><?php echo $adKey->lastName; ?></td>
-		<td><?php echo $adKey->password; ?></td>
+		<!-- <td><?php echo $adKey->password; ?></td> -->
 		<td><?php echo $adKey->adminLevel; ?></td>
   		<td width="40" align="left" ><a href="#" onClick="show_confirm('edit',<?php echo $adKey->userID; ?>)">Edit</a></td>
-  		<td userID="40" align="left" ><a href="#" onClick="show_confirm('delete',<?php echo $adKey->userID; ?>)">Delete </a></td>
+  		<td width="40" align="left" ><a href="#" onClick="show_confirm('delete',<?php echo $adKey->userID; ?>)">Delete </a></td>
 	</tr>
 		<?php } ?>
 		<tr>
-  		<td colspan="8" id="insert"> <a href="<?php echo base_url();?>index.php/admin/addForm">Insert New User</a></td>
+  		<td colspan="3" id="insert"> <a href="<?php echo base_url();?>index.php/admin/addForm">Add a New User</a></td>
+  		<td colspan="3"> <a href="<?php echo base_url();?>index.php/orders/adminOrder">Back to Undelivered Pizzas </a></td>
+  		<td colspan ="2"><a href="<?php echo base_url() . 'index.php/admin/logout' ?>">Logout</a></td>
   		</tr>
 </table>
 </body>

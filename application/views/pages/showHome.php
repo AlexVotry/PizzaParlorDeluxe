@@ -58,17 +58,17 @@ $(document).ready(function() {
 <body>
 	<div id="wrapper">
 		<div id="header">
-			<h1> Pizza Perfection </h1>
-			<a href="<?php echo base_url(); ?>index.php/admin">login</a>
+			<span id="pp"><h1> Pizza Perfection </h1></span>
+			<span id="adminLogin"><a href="<?php echo base_url(); ?>index.php/admin">login</a></span>
 			<div id="nav">
 				<p> Your order for tonight:</p>
 				<p id="order"></p>	
-				<p id="total"><p>
+				<p id="total"></p>
 			</div>
 		</div> 
 		<div id="sDrop"><img class="pizzaPic" src="<?php echo base_url(); ?>public/images/hawaiianPizza.png" alt="specialty">Choose one of our Specialty Pizzas!</div>
 		<div id="bDrop" ><img class="pizzaPic" src="<?php echo base_url(); ?>public/images/buildItPizza.jpg" alt="build a pizza"> Build your own masterpiece! </div>
-			<form id="menu" action="<?php echo base_url();?>index.php/home/custForm" method="post">
+			<form id="menu" action="<?php echo base_url();?>index.php/orders" method="post">
 				<div id="special">
 					<h4> Your choices are:</h4>
 						
@@ -111,14 +111,14 @@ $(document).ready(function() {
 						<input type="radio" name="crustB" value="gluten free" onclick="order();">Gluten free<br><br>
 						 <input id="twt" type="hidden" name="twt" />
 					<div class="buttons">
-						<!--<button type="reset" class="negative" onclick="clearPizza();">let me change that...</button><br/><br/>-->
 						<button type="submit" class="positive" >
 						<img src="<?php echo base_url(); ?>public/images/tick.png" alt="" /> perfect!</button>   
 						<button type="reset" class="negative" onclick="clearPizza();"><img src="<?php echo base_url(); ?>public/images/cancel.png" alt=""/>Start Over!</button>	
 					</div>
 				</div>
 			</form>
-		
+	
 	</div>
+		<div id="mobileLogin"><a href="<?php echo base_url(); ?>index.php/admin">login</a></div>
 </body>
 </html> 

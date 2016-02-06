@@ -1,74 +1,15 @@
 <?php 
 
-if (filter_has_var(INPUT_POST, "size")) {
-       $size = $_POST['size'];
-} else {
-    $size = $_POST['sizeB'];
-}
-
-if (filter_has_var(INPUT_POST, "crust")) {
-    $crust = $_POST['crust'];
-} else {
-    $crust = $_POST['crustB'];
-}
-
-if (isset($_POST['specialty'])) {
-    $specialty = $_POST['specialty'];
-}   else {
-     $specialty = "";
-    }
-
-if (isset($_POST['topping'])) {
-    $topping = $_POST['topping'];
-    $pTopping = "";
-    $numToppings = count($topping);
-    foreach ($topping as  $value) {
-        if ($value !="") {
-            $pTopping = $pTopping . " $value, ";
-        }
-    }
-}  else {
-        $pTopping = "";
-        $numToppings = 0;
-    }
-
-    switch ($size) {
-        case "Large":
-        $price = 20.00;
-        break;
-        case "Medium":
-        $price = 17.5;
-        break;
-        case "Small":
-        $price = 14;
-        break;
-        default:
-        $price = 0;
-        break;
-    }
-    // determine price for specialty.
-    switch ($specialty) {
-        case "Aloha":
-            $cost = $price + 1;
-            break;
-        case "Meat Lover":
-            $cost = $price + 4;
-            break;
-        case "BBQ Chicken":
-            $cost = $price + 3;
-            break;
-        default:
-            $cost = 0;
-            break;
-    }
-    if($numToppings > 0) $cost = $price + ($numToppings * .85);
-    if ($crust == "gluten free") {
-        $cost += 3;
-    }
-    $rawTotal = $cost * 1.095;
-    $totalWithTax = round($rawTotal, 2);
-$finalPizza = "$size $specialty $pTopping with $crust crust";
-$_SESSION['finalPizza'] = $finalPizza;
+        // get time and date;
+        date_default_timezone_set("America/Los_Angeles");
+        $date = date("m/d");
+        $t= date("h:i a");
+        $dt = new DateTime($t);
+        $time = $dt->format('h:i a');
+        $finalPizza = $_SESSION['finalPizza'];
+        $tax = $_SESSION['tax'];
+        $totalWithTax = $_SESSION['totalWithTax'];
+        $subTotal = $_SESSION['subTotal'];
 ?>
 </head>
 
@@ -83,66 +24,100 @@ $_SESSION['finalPizza'] = $finalPizza;
         </div>   
     </div>
    
-<form class="cmxform" id="commentForm" name="commentForm" method="post" action="<?php echo base_url();?>index.php/home/summary" onsubmit="return deliveryAddress();" >
+<form id="commentForm" name="commentForm" method="post" action="<?php echo base_url();?>index.php/orders/insertNewPizza" >
+    <fieldset class="cform">
 
- <fieldset>
+    <input type="hidden" name="date" value="<?=$date?>" />
+    <input type="hidden" name="time" value="<?=$time?>" />
     <input type="hidden" name="finalPizza" value="<?=$finalPizza?>" />
     <input type="hidden" name="totalWithTax" value="<?=$totalWithTax?>" />
-   <legend><b>Please fill out our customer information form</b></legend>
-        <table>
-            <tr>
-                <td class="ten"><label for="cfname">First Name</label></td>
-                <td class="thirty"><input id="cfname" name="fname" size="25" class="required" minlength="2" required/></td>
+    <input type="hidden" name="subTotal" value="<?=$subTotal?>" />
+    <input type="hidden" name="tax" value="<?=$tax?>" />
+    <input type="hidden" name="state" value="WA" />
+    <input type="hidden" name="completed" value="no" />
+
+        <legend><b>Please fill out our customer information form</b></legend>
             
-                <td class="ten"><label for="clname">Last Name</label></td>
-                <td class="thirty"><input id="clname" name="lname" size="25" class="required" minlength="2" required/></td>
-                
-            </tr>
-            <tr>
-                <td class="ten"><label for="cemail">E-Mail</label></td>
-                <td class="thirty"><input id="cemail" name="email" size="25"  class="required email" required /></td>
+                <p><label for="cfname">First Name:</label>
+                <span class="ten"><input id="cfname" name="fname" size="25" class="required" minlength="2" required/></span>
             
-                <td class="ten"><label for="cphone">Phone #</label></td>
-                <td class="thirty"><input id="cphone" name="phone" size="20" class="required" minlength="7" required/></td>
+                <label for="clname">Last Name:</label>
+                <span class="lap"><input id="clname" name="lname" size="25" class="required" minlength="2" required/></span></p>
                 
-            </tr>
-            <tr>    
-               <td class="ten"><label for="caddress">Your delivery address:</label></td>
-               <td class="thirty"><input id="caddress" name="address" size="25"  class="required" required/></td>
+                <p><label for="caddress">Your delivery address:</label>
+                 <span class="five"><input id="caddress" name="address" size="25"  class="required" required/></span>
                
-               <td class="ten"><label for="aptnum">Apartment number</label></td>
-               <td class="thirty"><input id="aptnum" name="aptnum" size= "20"/></td>
-               
-            </tr>
-            <tr>
-                <td class="ten"><label for="czip"> Zip codes in our delivery area: </label></td>
-                <td class="thirty"><select id="czip" name="zip" class="required">
+                <label for="aptnum">Apartment number:</label>
+                 <span class="lap"><input id="aptnum" name="aptnum" size= "20"/></span></p>
+            
+                <p><span class="five"><label for="cemail">email address:</label></span>
+                <span class="six"><input id="cemail" name="email" size="25"  class="required email" required /></span>
+            
+                <span ><label for="cphone">Phone #:</label></span>
+                <span class="lap"><input id="cphone" name="phone" size="20" class="required" minlength="7" required/></span></p>
+
+                <p><label for="czip"> Zip codes in our delivery area: </label>
+               <select id="czip" name="zip" class="required">
                     <option>98020</option>
                     <option>98026</option>
                     <option>98037</option>
                     <option>98036</option>
-                    </select></td>
-                    <td></td>
-                    <td>
-                        <div class="buttons">
-                            <button type="reset" class="negative"><img src="<?php echo base_url(); ?>public/images/cancel.png" alt=""/>start over</button>
-                        </div>
-                    </td>
-            </tr>
-            <tr>
-                <td class="ten"><label for="ccomment">Any special requests?</label></td>
-                <td class="thirty"><textarea id="ccomment" name="comment" cols="32"></textarea></td>
-                <td></td>
-                <td> 
+                    </select></p>
+            
                     <div class="buttons">
-                        <button type="submit" class="positive"><img src="<?php echo base_url(); ?>public/images/tick.png" alt="" /> Give me my Pizza!</button> 
-                        
+                        <button type="submit" class="positive"><img src="<?php echo base_url(); ?>public/images/tick.png" alt="" /> Give me my Pizza!</button>  
                     </div>
-                </td>
-            </tr>
-        </table>
-                
- </fieldset>
+                    <div class="buttons">
+                        <button type="reset" class="negative"><img src="<?php echo base_url(); ?>public/images/cancel.png" alt=""/>start over</button>
+                    </div>
+    </fieldset>
 </form>
-</body>
-</html>
+
+<form id="mobileForm" name="mobileForm" method="post" action="<?php echo base_url();?>index.php/orders/insertNewPizza" >
+    <fieldset class="mform">
+
+        <input type="hidden" name="date" value="<?=$date?>" />
+        <input type="hidden" name="time" value="<?=$time?>" />
+        <input type="hidden" name="finalPizza" value="<?=$finalPizza?>" />
+        <input type="hidden" name="totalWithTax" value="<?=$totalWithTax?>" />
+        <input type="hidden" name="subTotal" value="<?=$subTotal?>" />
+        <input type="hidden" name="tax" value="<?=$tax?>" />
+        <input type="hidden" name="state" value="WA" />
+        <input type="hidden" name="completed" value="no" />
+
+        <legend><b>Please fill out our customer information form</b></legend>
+            
+                <p><label for="cfname">First Name:</label>
+                <input id="cfname" name="fname" size="25" class="required" minlength="2" required/></p>
+            
+                <p><label for="clname">Last Name:</label>
+                <span class="lap"><input id="clname" name="lname" size="25" class="required" minlength="2" required/></span></p>
+                
+                <p><label for="caddress">Your delivery address:</label>
+                <input id="caddress" name="address" size="25"  class="required" required/></p>
+               
+                <p><label for="aptnum">Apartment number:</label>
+                <input id="aptnum" name="aptnum" size= "20"/></p>
+            
+                <p><label for="cemail">email address:</label>
+                <input id="cemail" name="email" size="25"  class="required email" required /></p>
+            
+                <p><label for="cphone">Phone #:</label>
+                <input id="cphone" name="phone" size="20" class="required" minlength="7" required/></p>
+
+                <p><label for="czip"> Zip codes in our delivery area: </label>
+               <select id="czip" name="zip" class="required">
+                    <option>98020</option>
+                    <option>98026</option>
+                    <option>98037</option>
+                    <option>98036</option>
+                    </select></p>
+            
+                    <div class="buttons">
+                        <button type="submit" class="positive"><img src="<?php echo base_url(); ?>public/images/tick.png" alt="" /> Give me my Pizza!</button>  
+                    </div>
+                    <div class="buttons">
+                        <button type="reset" class="negative"><img src="<?php echo base_url(); ?>public/images/cancel.png" alt=""/>start over</button>
+                    </div>
+    </fieldset>
+</form>
