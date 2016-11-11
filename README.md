@@ -6,4 +6,4 @@ You can log in and get delivery information and for delivered pizza, and if auth
 
 ![homepage](https://github.com/AlexVotry/PizzaParlorDeluxe/blob/master/public/images/pizza_home.png  "homepage")
 
-![delivery-list](https://github.com/AlexVotry/PizzaParlorDeluxe/blob/master/public/images/pizza_home.png  "deliver-list")
+![delivery-list](https://github.com/AlexVotry/PizzaParlorDeluxe/blob/master/public/images/deliver_pizza.png  "deliver-list")
